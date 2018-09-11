@@ -25,7 +25,7 @@ SECRET_KEY = 'fpic1-u=0ls(2e=3((yc0n6_q2ggm^9v@gc!+x*r&j@gorpwnf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','Althunayan.pythonanywhere.com']
+ALLOWED_HOSTS = [u'althunayan.pythonanywhere.com','127.0.0.1']
 
 # Application definition
 
