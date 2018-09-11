@@ -1,0 +1,411 @@
+
+
+
+<h1 class="title_table" > الأسبوع: السادس </h1>
+ <table class="table">
+      <thead>
+        <tr>
+            <th rowspan="2" >الحلقة</th>
+            <th rowspan="2">عدد الطلاب</th>
+            <th rowspan="2">الحضور</th>
+            <th rowspan="2">الغياب</th>
+            <th colspan="2">الحفظ</th>
+            <th colspan="2">الربط</th>
+            <th colspan="2">المراجعة</th>
+            <th colspan="2">التسميع</th>
+            <th rowspan="2">المجموع النهائي</th>
+        </tr>
+         <tr>
+            <th scope="col">المفترض</th>
+            <th scope="col">التنفيذ</th>
+            <th scope="col">المفترض</th>
+            <th scope="col">التنفيذ</th>
+           <th scope="col">المفترض</th>
+            <th scope="col">التنفيذ</th>
+            <th scope="col">عدد الأوجه</th>
+            <th scope="col">الضبط</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+          <tr>
+           <td class="col2"> الرفيعة1</a></td>
+                <td class="col2"> 21</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 21</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+          <tr>
+           <td class="col2"> الرفيعة2</a></td>
+                <td class="col2"> 15</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 15</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+          <tr>
+           <td class="col2"> عوف بن مالك</a></td>
+                <td class="col2"> 7</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 7</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+          <tr>
+           <td class="col2"> عمر بن عبدالعزيز</a></td>
+                <td class="col2"> 4</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 4</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+          <tr>
+           <td class="col2"> سلطانة</a></td>
+                <td class="col2"> 11</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 11</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+          <tr>
+           <td class="col2"> النصيان</a></td>
+                <td class="col2"> 10</td>
+                <td class="col2"> 0</td>
+                <td class="col2"> 10</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0.0</td>
+
+                <td class="col2"> 0.0</td>
+                <td class="col2"> 0%</td>
+                <td class="col2"> 0%</td>
+            </tr>
+      
+  </tbody>
+</table>
+
+<script  id="code">
+
+function setupchart(obg) {
+  // style chart
+    var series1_color= ["#6786b9"];
+    var series2_color= ["#93c47d"];
+    var chart = new CanvasJS.Chart(obg.name);
+    chart.toolTip.enabled=false;
+    chart.options.animationEnabled= false;
+    obg.title["fontFamily"]= "Droid Arabic Kufi";
+    chart.options.axisY = obg.axisY ; //["0"].fontFamily
+    chart.options.axisX= {
+         //   labelFontStyle: "bold",
+            labelFontFamily :"Droid Arabic Kufi"
+        };
+    chart.options.title = obg.title;
+    chart.options.backgroundColor= ["#ffffff00"];
+
+
+    var series1 = { //dataSeries - first quarter
+        type: "column",
+        name: obg.series1_title ,
+        showInLegend: true,
+    };
+
+    var series2 = { //dataSeries - second quarter
+        type: "column",
+        name: obg.series2_title ,
+        showInLegend: true
+    };
+
+    chart.options.data = [];
+    chart.options.data.push(series1);
+    chart.options.data.push(series2);
+
+    chart.options.legend = {
+     horizontalAlign: "right", // left, center ,right
+     verticalAlign: "center",  // top, center, bottom
+     fontFamily: "Droid Arabic Kufi",
+   };
+
+    series1.dataPoints=obg.series1_data;
+    series1.indexLabel= "{y}" ;
+    series1.indexLabelFontStyle= "bold",
+    series2.dataPoints=obg.series2_data;
+    series2.indexLabel= "{y}" ;
+    series2.indexLabelFontStyle= "bold",
+    series1.color= series1_color ;
+    series2.color= series2_color;
+    chart.render();
+}
+
+function chart_init() {
+  //var backgroundColor=
+    series1_data=[];
+    series2_data=[];
+
+    series3_data=[];
+    series4_data=[];
+
+    series5_data=[];
+    series6_data=[];
+
+    series7_data=[];
+    series8_data=[];
+
+    series9_data=[];
+    series10_data=[];
+
+    
+        series1_data.push({ label: "الرفيعة1",  y: 0 });
+        series2_data.push({ label: "الرفيعة1",  y: 0 });
+
+        series3_data.push({ label: "الرفيعة1",  y: 21 });
+        series4_data.push({ label: "الرفيعة1",  y: 0 });
+
+        series5_data.push({ label: "الرفيعة1",  y:0.0});
+        series6_data.push({ label: "الرفيعة1",  y:0.0});
+
+        series7_data.push({ label: "الرفيعة1",  y:0.0});
+        series8_data.push({ label: "الرفيعة1",  y:0.0});
+
+        series9_data.push({ label: "الرفيعة1",  y:0.0});
+        series10_data.push({ label: "الرفيعة1",  y:0.0});
+
+
+
+    
+        series1_data.push({ label: "الرفيعة2",  y: 0 });
+        series2_data.push({ label: "الرفيعة2",  y: 0 });
+
+        series3_data.push({ label: "الرفيعة2",  y: 15 });
+        series4_data.push({ label: "الرفيعة2",  y: 0 });
+
+        series5_data.push({ label: "الرفيعة2",  y:0.0});
+        series6_data.push({ label: "الرفيعة2",  y:0.0});
+
+        series7_data.push({ label: "الرفيعة2",  y:0.0});
+        series8_data.push({ label: "الرفيعة2",  y:0.0});
+
+        series9_data.push({ label: "الرفيعة2",  y:0.0});
+        series10_data.push({ label: "الرفيعة2",  y:0.0});
+
+
+
+    
+        series1_data.push({ label: "عوف بن مالك",  y: 0 });
+        series2_data.push({ label: "عوف بن مالك",  y: 0 });
+
+        series3_data.push({ label: "عوف بن مالك",  y: 7 });
+        series4_data.push({ label: "عوف بن مالك",  y: 0 });
+
+        series5_data.push({ label: "عوف بن مالك",  y:0.0});
+        series6_data.push({ label: "عوف بن مالك",  y:0.0});
+
+        series7_data.push({ label: "عوف بن مالك",  y:0.0});
+        series8_data.push({ label: "عوف بن مالك",  y:0.0});
+
+        series9_data.push({ label: "عوف بن مالك",  y:0.0});
+        series10_data.push({ label: "عوف بن مالك",  y:0.0});
+
+
+
+    
+        series1_data.push({ label: "عمر بن عبدالعزيز",  y: 0 });
+        series2_data.push({ label: "عمر بن عبدالعزيز",  y: 0 });
+
+        series3_data.push({ label: "عمر بن عبدالعزيز",  y: 4 });
+        series4_data.push({ label: "عمر بن عبدالعزيز",  y: 0 });
+
+        series5_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+        series6_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+
+        series7_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+        series8_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+
+        series9_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+        series10_data.push({ label: "عمر بن عبدالعزيز",  y:0.0});
+
+
+
+    
+        series1_data.push({ label: "سلطانة",  y: 0 });
+        series2_data.push({ label: "سلطانة",  y: 0 });
+
+        series3_data.push({ label: "سلطانة",  y: 11 });
+        series4_data.push({ label: "سلطانة",  y: 0 });
+
+        series5_data.push({ label: "سلطانة",  y:0.0});
+        series6_data.push({ label: "سلطانة",  y:0.0});
+
+        series7_data.push({ label: "سلطانة",  y:0.0});
+        series8_data.push({ label: "سلطانة",  y:0.0});
+
+        series9_data.push({ label: "سلطانة",  y:0.0});
+        series10_data.push({ label: "سلطانة",  y:0.0});
+
+
+
+    
+        series1_data.push({ label: "النصيان",  y: 0 });
+        series2_data.push({ label: "النصيان",  y: 0 });
+
+        series3_data.push({ label: "النصيان",  y: 10 });
+        series4_data.push({ label: "النصيان",  y: 0 });
+
+        series5_data.push({ label: "النصيان",  y:0.0});
+        series6_data.push({ label: "النصيان",  y:0.0});
+
+        series7_data.push({ label: "النصيان",  y:0.0});
+        series8_data.push({ label: "النصيان",  y:0.0});
+
+        series9_data.push({ label: "النصيان",  y:0.0});
+        series10_data.push({ label: "النصيان",  y:0.0});
+
+
+
+    
+
+
+
+    //   chartContainer1
+    chartContainer={
+    name: "chartContainer1" ,
+    series1_data: series1_data ,
+    series2_data: series2_data ,
+    axisY:{ prefix: "%",  maximum: 100} ,
+    title: { text: "المستوى" } ,
+    series1_title: "الضبط" ,
+    series2_title: "المجموع النهائي",
+    }
+    setupchart(chartContainer);
+
+    //   chartContainer2
+    chartContainer={
+    name: "chartContainer2" ,
+    series1_data: series3_data ,
+    series2_data: series4_data ,
+    axisY:{} ,
+    title: { text: "الحضور" } ,
+    series1_title: "عدد الطلاب" ,
+    series2_title: "الحضور",
+    }
+    setupchart(chartContainer);
+
+    //   chartContainer3
+    chartContainer={
+    name: "chartContainer3" ,
+    series1_data: series5_data ,
+    series2_data: series6_data ,
+    axisY:{} ,
+    title: { text: "الحفظ" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+
+     //   chartContainer4
+    chartContainer={
+    name: "chartContainer4" ,
+    series1_data: series7_data ,
+    series2_data: series8_data ,
+    axisY:{} ,
+    title: { text: "الربط" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+
+     //   chartContainer5
+    chartContainer={
+    name: "chartContainer5" ,
+    series1_data: series9_data ,
+    series2_data: series10_data ,
+    axisY:{} ,
+    title: { text: "المراجعة" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+}
+
+
+</script>
+
+<div class="chart1"  dir="ltr" >
+<div id="chartContainer1" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer2" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer3" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer4" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer5" style="width: 100%; height: 300px;display: inline-block;"></div>
+</div>
+   
+
+
+
+
+

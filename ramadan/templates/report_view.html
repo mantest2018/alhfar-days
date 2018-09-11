@@ -1,0 +1,71 @@
+{% block content %}
+
+{% if latest_list %}
+    <style>
+
+     @media print {
+     body{
+     background: none;
+     }
+        .footer{
+	display:none;
+}
+.content {
+    border: none;
+    }
+    .content .title {
+    text-align: center;
+}
+.card1 {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.63);
+}
+
+    }
+
+</style>
+ <table class="table">
+      <thead>
+        <tr>
+            <th rowspan="2" >الحلقة</th>
+            <th rowspan="2">عدد الطلاب</th>
+        <th rowspan="2">الحضور</th>
+        <th rowspan="2">الغياب</th>
+        <th colspan="3">التسميع</th>
+            <th rowspan="2">المراجعة</th>
+        </tr>
+         <tr>
+           <th scope="col">عدد الأوجه</th>
+        <th scope="col">الأخطاء</th>
+         <th scope="col">اللحون</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for list in latest_list %}
+
+      {% if list.ratio_total == '0' %}
+ <tr style="background: #fb9e9e;" >
+    {% else %}
+<tr >
+   {% endif %}
+
+           <td class="col2"> {{ list.get_course }}</a></td>
+                   <td class="col2"> {{ list.conut_student  }}</td>
+          <td class="col2"> {{ list.conut_presence_student  }}</td>
+          <td class="col2"> {{ list.conut_truant_student }}</td>
+
+
+          <td class="col2"> {{ list.sum_count_save }}</td>
+          <td class="col2"> {{ list.sum_count_erorr }}</td>
+
+          <td class="col2"> {{ list.sum_count_alirt }}</td>
+          <td class="col2"> {{ list.sum_count_link  }}</td>
+
+            </tr>
+      {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>لا يوجد بيانات </p>
+   {% endif %}
+{% endblock %}

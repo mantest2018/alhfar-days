@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="title">
+    <tr>
+        <th scope="col">تسجيل طالب جديد:</th>
+    </tr>
+</h1>
+
+<form action="" method="post" role="input">{% csrf_token %}
+    <table>
+    {{ fotmedit}}
+    </table>
+
+    <p>{{is_save}}</p>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">حفظ</button>
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="title">
+    <tr>
+        <th scope="col">{{ course  }}</th>
+         <th scope="col">اليوم:</th>
+        <th scope="col">{{ day }}</th>
+    </tr>
+</h1>
+
+
+{% if latest_list %}
+<table class="table">
+  <thead>
+    <tr>
+         <th>#</th>
+      <th scope="col">الطالب</th>
+       <th scope="col">المسار</th>
+        <th scope="col"> الأوجه المطلوبة</th>
+         <th scope="col"> الأوجه المحفوظة</th>
+         <th scope="col">مستوى التنفيذ</th>
+    </tr>
+  </thead>
+        {% for list in latest_list %}
+        <tbody>
+          <td> {{ forloop.counter }}</td>
+        <td> {{ list.student}}</td>
+         <td> {{ list.student.tracks}}</td>
+        <td> {{ list.student.tracks.number_pages  |stringformat:"g"   }}</td>
+         <td> {{ list.number_pages |stringformat:"g"   }}</td>
+         <td> {{ list.degree |ratio:25 }}</td>
+  </tbody>
+        {% endfor %}
+</table>
+    {% else %}
+        <p>لا يوجد بيانات </p>
+    {% endif %}
+{% endblock %}

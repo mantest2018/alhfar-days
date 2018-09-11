@@ -1,0 +1,383 @@
+
+
+
+    <style>
+
+     @media print {
+     body{
+     background: none;
+     }
+        .footer{
+	display:none;
+}
+.content {
+    border: none;
+    }
+    .content .title {
+    text-align: center;
+}
+.card1 {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.63);
+}
+
+    }
+
+</style>
+ <table class="table">
+      <thead>
+        <tr>
+            <th rowspan="2" >الحلقة</th>
+            <th rowspan="2">عدد الطلاب</th>
+        <th rowspan="2">الحضور</th>
+        <th rowspan="2">الغياب</th>
+        <th colspan="3">التسميع</th>
+            <th rowspan="2">المراجعة</th>
+        </tr>
+         <tr>
+           <th scope="col">عدد الأوجه</th>
+        <th scope="col">الأخطاء</th>
+         <th scope="col">اللحون</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+
+      
+<tr >
+   
+
+           <td class="col2"> الرفيعة1</a></td>
+                   <td class="col2"> 11</td>
+          <td class="col2"> 9</td>
+          <td class="col2"> 2</td>
+
+
+          <td class="col2"> 10.0</td>
+          <td class="col2"> 0</td>
+
+          <td class="col2"> 0</td>
+          <td class="col2"> 8.0</td>
+
+            </tr>
+      
+
+      
+<tr >
+   
+
+           <td class="col2"> الرفيعة2</a></td>
+                   <td class="col2"> 10</td>
+          <td class="col2"> 10</td>
+          <td class="col2"> 0</td>
+
+
+          <td class="col2"> 0.0</td>
+          <td class="col2"> 0</td>
+
+          <td class="col2"> 0</td>
+          <td class="col2"> 0.0</td>
+
+            </tr>
+      
+
+      
+<tr >
+   
+
+           <td class="col2"> عمر بن عبدالعزيز</a></td>
+                   <td class="col2"> 4</td>
+          <td class="col2"> 4</td>
+          <td class="col2"> 0</td>
+
+
+          <td class="col2"> 0.0</td>
+          <td class="col2"> 0</td>
+
+          <td class="col2"> 0</td>
+          <td class="col2"> 0.0</td>
+
+            </tr>
+      
+
+      
+<tr >
+   
+
+           <td class="col2"> سلطانة</a></td>
+                   <td class="col2"> 11</td>
+          <td class="col2"> 11</td>
+          <td class="col2"> 0</td>
+
+
+          <td class="col2"> 0.0</td>
+          <td class="col2"> 0</td>
+
+          <td class="col2"> 0</td>
+          <td class="col2"> 0.0</td>
+
+            </tr>
+      
+
+      
+<tr >
+   
+
+           <td class="col2"> النصيان</a></td>
+                   <td class="col2"> 8</td>
+          <td class="col2"> 8</td>
+          <td class="col2"> 0</td>
+
+
+          <td class="col2"> 0.0</td>
+          <td class="col2"> 0</td>
+
+          <td class="col2"> 0</td>
+          <td class="col2"> 0.0</td>
+
+            </tr>
+      
+  </tbody>
+</table>
+
+<script  id="code">
+
+function setupchart(obg) {
+  // style chart
+    var series1_color= ["#6786b9"];
+    var series2_color= ["#93c47d"];
+    var chart = new CanvasJS.Chart(obg.name);
+    chart.toolTip.enabled=false;
+    chart.options.animationEnabled= false;
+    obg.title["fontFamily"]= "Droid Arabic Kufi";
+    chart.options.axisY = obg.axisY ; //["0"].fontFamily
+    chart.options.axisX= {
+         //   labelFontStyle: "bold",
+            labelFontFamily :"Droid Arabic Kufi"
+        };
+    chart.options.title = obg.title;
+    chart.options.backgroundColor= ["#ffffff00"];
+
+
+    var series1 = { //dataSeries - first quarter
+        type: "column",
+        name: obg.series1_title ,
+        showInLegend: true,
+    };
+
+    var series2 = { //dataSeries - second quarter
+        type: "column",
+        name: obg.series2_title ,
+        showInLegend: true
+    };
+
+    chart.options.data = [];
+    chart.options.data.push(series1);
+    chart.options.data.push(series2);
+
+    chart.options.legend = {
+     horizontalAlign: "right", // left, center ,right
+     verticalAlign: "center",  // top, center, bottom
+     fontFamily: "Droid Arabic Kufi",
+   };
+
+    series1.dataPoints=obg.series1_data;
+    series1.indexLabel= "{y}" ;
+    series1.indexLabelFontStyle= "bold",
+    series2.dataPoints=obg.series2_data;
+    series2.indexLabel= "{y}" ;
+    series2.indexLabelFontStyle= "bold",
+    series1.color= series1_color ;
+    series2.color= series2_color;
+    chart.render();
+}
+
+function chart_init() {
+  //var backgroundColor=
+    series1_data=[];
+    series2_data=[];
+
+    series3_data=[];
+    series4_data=[];
+
+    series5_data=[];
+    series6_data=[];
+
+    series7_data=[];
+    series8_data=[];
+
+    series9_data=[];
+    series10_data=[];
+
+    
+        series1_data.push({ label: "الرفيعة1",  y:  });
+        series2_data.push({ label: "الرفيعة1",  y:  });
+
+        series3_data.push({ label: "الرفيعة1",  y: 11 });
+        series4_data.push({ label: "الرفيعة1",  y: 9 });
+
+        series5_data.push({ label: "الرفيعة1",  y:});
+        series6_data.push({ label: "الرفيعة1",  y:});
+
+        series7_data.push({ label: "الرفيعة1",  y:});
+        series8_data.push({ label: "الرفيعة1",  y:});
+
+        series9_data.push({ label: "الرفيعة1",  y:});
+        series10_data.push({ label: "الرفيعة1",  y:});
+
+
+
+    
+        series1_data.push({ label: "الرفيعة2",  y:  });
+        series2_data.push({ label: "الرفيعة2",  y:  });
+
+        series3_data.push({ label: "الرفيعة2",  y: 10 });
+        series4_data.push({ label: "الرفيعة2",  y: 10 });
+
+        series5_data.push({ label: "الرفيعة2",  y:});
+        series6_data.push({ label: "الرفيعة2",  y:});
+
+        series7_data.push({ label: "الرفيعة2",  y:});
+        series8_data.push({ label: "الرفيعة2",  y:});
+
+        series9_data.push({ label: "الرفيعة2",  y:});
+        series10_data.push({ label: "الرفيعة2",  y:});
+
+
+
+    
+        series1_data.push({ label: "عمر بن عبدالعزيز",  y:  });
+        series2_data.push({ label: "عمر بن عبدالعزيز",  y:  });
+
+        series3_data.push({ label: "عمر بن عبدالعزيز",  y: 4 });
+        series4_data.push({ label: "عمر بن عبدالعزيز",  y: 4 });
+
+        series5_data.push({ label: "عمر بن عبدالعزيز",  y:});
+        series6_data.push({ label: "عمر بن عبدالعزيز",  y:});
+
+        series7_data.push({ label: "عمر بن عبدالعزيز",  y:});
+        series8_data.push({ label: "عمر بن عبدالعزيز",  y:});
+
+        series9_data.push({ label: "عمر بن عبدالعزيز",  y:});
+        series10_data.push({ label: "عمر بن عبدالعزيز",  y:});
+
+
+
+    
+        series1_data.push({ label: "سلطانة",  y:  });
+        series2_data.push({ label: "سلطانة",  y:  });
+
+        series3_data.push({ label: "سلطانة",  y: 11 });
+        series4_data.push({ label: "سلطانة",  y: 11 });
+
+        series5_data.push({ label: "سلطانة",  y:});
+        series6_data.push({ label: "سلطانة",  y:});
+
+        series7_data.push({ label: "سلطانة",  y:});
+        series8_data.push({ label: "سلطانة",  y:});
+
+        series9_data.push({ label: "سلطانة",  y:});
+        series10_data.push({ label: "سلطانة",  y:});
+
+
+
+    
+        series1_data.push({ label: "النصيان",  y:  });
+        series2_data.push({ label: "النصيان",  y:  });
+
+        series3_data.push({ label: "النصيان",  y: 8 });
+        series4_data.push({ label: "النصيان",  y: 8 });
+
+        series5_data.push({ label: "النصيان",  y:});
+        series6_data.push({ label: "النصيان",  y:});
+
+        series7_data.push({ label: "النصيان",  y:});
+        series8_data.push({ label: "النصيان",  y:});
+
+        series9_data.push({ label: "النصيان",  y:});
+        series10_data.push({ label: "النصيان",  y:});
+
+
+
+    
+
+
+
+    //   chartContainer1
+    chartContainer={
+    name: "chartContainer1" ,
+    series1_data: series1_data ,
+    series2_data: series2_data ,
+    axisY:{ prefix: "%",  maximum: 100} ,
+    title: { text: "المستوى" } ,
+    series1_title: "الضبط" ,
+    series2_title: "المجموع النهائي",
+    }
+    setupchart(chartContainer);
+
+    //   chartContainer2
+    chartContainer={
+    name: "chartContainer2" ,
+    series1_data: series3_data ,
+    series2_data: series4_data ,
+    axisY:{} ,
+    title: { text: "الحضور" } ,
+    series1_title: "عدد الطلاب" ,
+    series2_title: "الحضور",
+    }
+    setupchart(chartContainer);
+
+    //   chartContainer3
+    chartContainer={
+    name: "chartContainer3" ,
+    series1_data: series5_data ,
+    series2_data: series6_data ,
+    axisY:{} ,
+    title: { text: "الحفظ" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+
+     //   chartContainer4
+    chartContainer={
+    name: "chartContainer4" ,
+    series1_data: series7_data ,
+    series2_data: series8_data ,
+    axisY:{} ,
+    title: { text: "الربط" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+
+     //   chartContainer5
+    chartContainer={
+    name: "chartContainer5" ,
+    series1_data: series9_data ,
+    series2_data: series10_data ,
+    axisY:{} ,
+    title: { text: "المراجعة" } ,
+    series1_title: "المفترض" ,
+    series2_title: "التنفيذ",
+    }
+    setupchart(chartContainer);
+}
+
+
+</script>
+
+<div class="chart1"  dir="ltr" style="margin-top: 140px;" >
+<div id="chartContainer1" style="width: 100%; height: 300px;display: inline-block;"></div>
+    </div>
+<div class="chart1"  dir="ltr" >
+<div id="chartContainer2" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer3" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer4" style="width: 100%; height: 300px;display: inline-block;"></div>
+<div id="chartContainer5" style="width: 100%; height: 300px;display: inline-block;"></div>
+</div>
+   
+
+
+
+
+

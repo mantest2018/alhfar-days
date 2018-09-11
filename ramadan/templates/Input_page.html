@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="title">
+    <tr>
+        <th scope="col">الطالب:</th>
+        <th scope="col">{{ report.student }}</th>
+
+        {% if  report.weeks %}
+        <th scope="col">الأسبوع:</th>
+        <th scope="col">{{ report.weeks }}</th>
+         {% endif %}
+        {% if  report.student.is_show %}
+         {% else %}
+            <th scope="col">الطالب محذوف:</th>
+            <th scope="col">{{ report.student.course.name_techer }}</th>
+             {% if  report.student.course.phone_nemper %}
+                <th scope="col">{{ report.student.course.phone_nemper }}</th>
+            {% endif %}
+         {% endif %}
+    </tr>
+</h1>
+<form action="" method="post" role="input">{% csrf_token %}
+    <table>
+        <tr>
+            <th> المطلوب</th>
+            <th>التنفيذ</th>
+        </tr>
+        {% for field in fotmedit %}
+            {% if not field.name in hide %}
+                <tr>
+                    <th class="lable">{{ field.label_tag }}</th>
+                    <th>{{ field }}</th>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <p>{{is_save}}</p>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">حفظ</button>
+</form>
+{% endblock %}

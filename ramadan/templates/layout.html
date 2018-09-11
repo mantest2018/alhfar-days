@@ -1,0 +1,103 @@
+<!doctype html>
+<html  dir="rtl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ {% load static %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'style/bootstrap/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style/css/style.css' %}"/>
+    <title>{% block title %} برنامج إتقان{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{STATIC_URL}}/static/style/imges/logo_ramadan3.png" />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'style/bootstrap/js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'style/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'style/bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+
+
+{% block  sidebar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/"> حلقات تحفيظ القران</a>
+
+
+
+     {% if 'member_id' in request.session %}
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+
+                {% if 'student' in request.session.user_type%}
+            <li class="nav-item active">
+                <a class="nav-link" href="/">الرصد اليومي<span class="sr-only">(current)</span></a>
+            </li>
+
+                <li class="nav-item">
+                        <a class="nav-link" href="/student_tasks/">دفتر الطالب</a>
+                    </li>
+            <li class="nav-item">
+                        <a class="nav-link" href="/student_demo/">التسميع</a>
+                    </li>
+               <li class="nav-item">
+                        <a class="nav-link" href="/report/">تقرير عام</a>
+                    </li>
+                {% endif %}
+                {% if 'techer' in request.session.user_type %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/students/">الطلاب</a>
+                    </li>
+
+                <li class="nav-item">
+                        <a class="nav-link" href="/all_week/">التقرير العام</a>
+                    </li>
+            <li class="nav-item">
+                        <a class="nav-link" href="/report/">التقرير اليومي للحلقة</a>
+                    </li>
+                          <li class="nav-item">
+                        <a class="nav-link" href="/register/">إضافة طالب</a>
+                    </li>
+                {% endif %}
+            <li class="nav-item">
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/logout/">تسجيل الخروج</a>
+            </li>
+
+            {% else %}
+<a class="nav-link" href="/weekNow/">تقرير الأسبوع الحالي</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/login/" style="margin-right: 30px;">تسجيل الدخول</a>
+
+{% endif %}
+
+        </ul>
+    </div>
+
+</nav>
+{% endblock %}
+  {% block login %}
+<div class="content" >
+    {% block content %}
+
+    {% endblock %}
+</div>
+{% endblock %}
+
+
+<footer class="footer">
+          <div class="text-muted">:عند مواجهتك أي مشكلة أو تريد الإستفسار تواصل معنا </div>
+        <div class="text-muted">0562060004 المسؤول التقني</div>
+          <div class="text-muted"> </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+    <h1 class="title">
+    <tr>
+        <th scope="col">تقرير اليوم :</th>
+        <th scope="col">{{last_day}}</th>
+  </tr>
+
+</h1>
+<div class="content_Card" >
+     <div class="card1">
+         <div class="card-title">عدد أوجه الحفظ:</div>
+       <div class="card-value">{{save_pages}}</div>
+    </div>
+
+     <div class="card1">
+         <div class="card-title">عدد أوجه المراجعة:</div>
+       <div class="card-value">{{link_pages}}</div>
+    </div>
+
+     <div class="card1">
+         <div class="card-title">عدد الطلاب:</div>
+       <div class="card-value">{{conut_student}}</div>
+    </div>
+     <div class="card1">
+         <div class="card-title">عدد الحضور:</div>
+       <div class="card-value">{{conut_presence}}</div>
+    </div>
+
+</div>
+
+<div id="demo">
+<h1>تحميل التقرير</h1>
+</div>
+<script>
+
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    
+	  code=document.getElementById("code").innerHTML;
+	  
+	
+       var _in = document.getElementById('demo');
+        var scriptNode = document.createElement('script');
+        scriptNode.innerHTML = code;
+       _in.appendChild(scriptNode);
+	chart_init();
+	  }
+  };
+  xhttp.open("POST", "../{{report}}", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("csrfmiddlewaretoken={{ csrf_token }}");
+}
+
+$(document).ready(function() {
+loadDoc() ;
+});
+</script>
+{% endblock %}
