@@ -1,0 +1,6 @@
+mydatabase
+*.sqlite3
+*__pycache__*
+.idea/*
+*migrations*
+*views/cache*
