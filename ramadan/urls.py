@@ -26,14 +26,18 @@ urlpatterns = [
     path('students/<int:week_id>/', views.students, name='report_course'),
     # يوجد خلل
     path('report/<int:student_id>/', views.report, name='report_student'),
-    path('all_week/', views.all_week, name='report_student'),
+    path('all_day/', views.all_day, name='all_day'),
 
 
     # control  add and remove student
     path('remove/<int:student_id>/', views.remove, name='remove'),
+    # report   students
+    path('report_students/', views.report_students, name='report_students'),
+    path('report_students/<int:student_id>/', views.report_students, name='report_students'),
 
 
     path('report/', views.report, name='report'),
+
 
 
     path('report_day/tasks/', views.tasks_report_day, name='report'),

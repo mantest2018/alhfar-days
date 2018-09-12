@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+{% if latest_list %}
+<h1>طلاب :{{ course }}</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th scope="col">الطالب</th>
+    </tr>
+    </thead>
+
+    {% for question in latest_list %}
+    <tbody>
+    <td> {{ forloop.counter }}</td>
+    <td><a href="/report_students/{{ question.id }}/">{{ question.name_student }}</a></td>
+    </tbody>
+    {% endfor %}
+</table>
+{% else %}
+<p>لا يوجد بيانات</p>
+{% endif %}
+{% endblock %}

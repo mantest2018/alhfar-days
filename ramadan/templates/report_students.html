@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if report %}
+<style>
+
+     @media print {
+     body{
+     background: none;
+     }
+        .footer{
+	display:none;
+}
+.content {
+    border: none;
+    }
+    .content .title {
+    text-align: center;
+}
+.card1 {
+             border: solid 2px #b5b5b5;
+}
+.table thead {
+    background: #f7f7f7;
+}
+    }
+
+
+
+
+</style>
+
+{% load static %}
+
+<button onclick="goBack()" class="btn btn-default"><img class="icons remove" onclick="remove(this)"
+                                                        name="{{ list.instance.student.id }}"
+                                                        style="color: #007bff;cursor: pointer;"
+                                                        src="{% static 'style/icon/navigate_next.svg' %}">رجوع
+</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+
+
+</script>
+<h1>الطالب : {{ Student }}</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th rowspan="2">اليوم</th>
+        <th rowspan="2">الحضور</th>
+        <th colspan="2">الحفظ</th>
+        <th colspan="2">المراجعة</th>
+        <th colspan="3">التسميع</th>
+        <th rowspan="2">المراجعة</th>
+    </tr>
+    <tr>
+        <th scope="col">من</th>
+        <th scope="col">إلى</th>
+        <th scope="col">من</th>
+        <th scope="col">إلى</th>
+        <th scope="col">عدد الأوجه</th>
+        <th scope="col">الأخطاء</th>
+        <th scope="col">اللحون</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for list in report %}
+
+    {% if list.present  %}
+    <tr >
+        {% else %}
+    <tr style="background: #fb9e9e;">
+        {% endif %}
+        <td class="col2"> {{ list.weeks }}</td>
+        <td class="col2">{% if list.present %}
+            حاضر
+            {% else %}
+            غائب
+            {% endif %}
+        </td>
+        <td class="col2"> {{ list.save_from }}</td>
+        <td class="col2"> {{ list.save_to }}</td>
+
+        <td class="col2"> {{ list.link_from }}</td>
+        <td class="col2"> {{ list.link_to }}</td>
+
+        <td class="col2"> {{ list.count_save }}</td>
+        <td class="col2"> {{ list.count_erorr }}</td>
+        <td class="col2"> {{ list.count_alirt }}</td>
+
+        <td class="col2"> {{ list.count_link }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>لا يوجد بيانات </p>
+{% endif %}
+
+{% endblock %}

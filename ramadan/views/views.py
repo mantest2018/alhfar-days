@@ -89,8 +89,9 @@ def students(request, week_id=None):
                     report = Tasks_weeks.objects.get(student__id=request.POST['student_id'], student__course__id=request.session['member_id'], weeks__id=week_id)
                     fotmedit = Tasks_weeks_Form(request.POST or None, instance=report)
                     fotmedit.save()
+                    return HttpResponse("Done")
                 except:
-                    print("erorr")
+                    return HttpResponse("erorr")
             latest_list = []
             for tasks_weeks in Tasks_weeks.objects.filter(student__course__id=request.session['member_id'], weeks__id=week_id):
                 form = Tasks_weeks_Form(instance=tasks_weeks)
@@ -121,7 +122,7 @@ def tasks_report_day(request, week_id=None):
     return render(request, 'tasks_report_day.html', context)
 
 
-def all_week(request):
+def all_day(request):
     if is_login(request):
         if request.session['user_type'] == 'student':
             return Tasks_weeks(request, week_now(), request.session['member_id'])
@@ -135,7 +136,7 @@ def all_week(request):
             except Weeks.DoesNotExist:
                 raise Http404("Weeks does not exist")
 
-            return render(request, 'AllWeek.html', {'latest_list': latest_list, 'course': course})
+            return render(request, 'AllDay.html', {'latest_list': latest_list, 'course': course})
     return login(request)
 
 
@@ -216,3 +217,42 @@ def remove(request, student_id):
             return HttpResponse("erorr")
     else:
         return HttpResponse("Not found page")
+
+def report_students(request, student_id=''):
+
+    if student_id == '':
+        if request.session['user_type'] == 'student':
+            student_id = request.session['member_id']
+        else:
+            if is_login(request):
+                if request.session['user_type'] == 'techer':
+                    latest_list = Students.objects.filter(course__id=request.session['member_id'])
+                    course = Courses.objects.get(id=request.session['member_id'])
+                    context = {
+                        'course':course,
+                        'latest_list': latest_list}
+                    return render(request, 'allStudents.html', context)
+
+            return HttpResponseRedirect('/')
+
+    if not is_login(request):
+        return HttpResponseRedirect('/')
+    try:
+        Student=None
+        if request.session['user_type'] == 'student':
+            if student_id == request.session['member_id']:
+                Student = Students.objects.get(pk=request.session['member_id'])
+        if request.session['user_type'] == 'techer':
+            Student = Students.objects.get(pk=student_id)
+            if not Student.course.id == request.session['member_id']:
+                return HttpResponseRedirect('/')
+        report = Tasks_weeks.objects.filter(student__id=Student.id,weeks__id__lte=week_now())
+        context = {
+            'Student':Student,
+            'report': report}
+        return render(request, 'report_students.html', context)
+    except(Courses.DoesNotExist, Students.DoesNotExist):
+
+        raise Http404("Courses does not exist")
+    except(Tasks_weeks.DoesNotExist):
+        raise Http404("Tasks_weeks does not exist")

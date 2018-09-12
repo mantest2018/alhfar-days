@@ -13,72 +13,81 @@
 {% if latest_list %}
 
 {% load static %}
-<div >
+<div>
     {% for list in latest_list %}
 
-<form  method="post" action=""  >{% csrf_token %}
-    <input type='hidden' name='student_id' value='{{ list.instance.student.id }}' />
-    <div class="card-list">
-        <div id="name" class="name"  {% if list.instance.student.is_show %}
-             style="color: #007bff;cursor:pointer;overflow: hidden;width: 180px;white-space: nowrap; text-overflow: ellipsis;" onclick="call_show_list(this)"
-        {% endif %}
-        >{{ forloop.counter }} : {{ list.instance.student }}</div>
-        <div class="redos">
-            <div name="degree" class="num">{{ list.instance.count_save }}</div>
-            <div name="total" class="num">{{ list.instance.count_link }}</div>
-             {% if list.instance.student.is_show %}
-            <img style="color: #007bff;cursor: pointer;" onclick="show_list(this)" class="icons down"
-                 src="{% static 'style/icon/angle-down-solid.svg' %}">
-            <img class="icons remove" onclick="remove(this)" name="{{ list.instance.student.id }}" style="color: #007bff;cursor: pointer;" src="{% static 'style/icon/trash-alt-regular.svg' %}"  >
-    {% else %}
-    <img class="icons" src="{% static 'style/icon/user-times-regular.svg' %}"  >
-    {% endif %}
+    <form method="post" action="">{% csrf_token %}
+        <input type='hidden' name='student_id' value='{{ list.instance.student.id }}'/>
+        <div class="card-list">
+            <div id="name" class="name" {% if list.instance.student.is_show %}
+                 style="color: #007bff;cursor:pointer;overflow: hidden;width: 180px;white-space: nowrap; text-overflow: ellipsis;"
+                 onclick="call_show_list(this)"
+                 {% endif %}
+            >{{ forloop.counter }} : {{ list.instance.student }}
+            </div>
+            <div class="redos">
+                <div name="degree" class="num">{{ list.instance.count_save }}</div>
+                <div name="total" class="num">{{ list.instance.count_link }}</div>
+                {% if list.instance.student.is_show %}
+                            <img  class="icons done" style="display: none;"
+                 src="{% static 'style/icon/done.svg' %}">
+                <img style="color: #007bff;cursor: pointer;display: none;" onclick="show_list(this)" class="icons down"
+                     src="{% static 'style/icon/angle-down-solid.svg' %}">
+                <img class="icons remove" onclick="remove(this)" name="{{ list.instance.student.id }}"
+                     style="color: #007bff;cursor: pointer;" src="{% static 'style/icon/trash-alt-regular.svg' %}">
+                {% else %}
+                <img class="icons" src="{% static 'style/icon/user-times-regular.svg' %}">
+                {% endif %}
 
+            </div>
+            <div class="progress">
+                <div class="progress-bar" style="width: {{ list.instance.total |floatformat:0 }}%;"></div>
+            </div>
+            <div class="card-max">
+                <table onchange="auto_total(this)" class="card-table">
+                    <tr>
+                        <td></td>
+                        <td>من</td>
+                        <td>إلى</td>
+                    </tr>
+
+                    <tr>
+                        <td>الحفظ</td>
+                        <td>{{ list.save_from }}</td>
+                        <td>{{ list.save_to }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>المراجعة</td>
+                        <td>{{ list.link_from }}</td>
+                        <td>{{ list.link_to }}</td>
+                    </tr>
+                    <tr>
+                        <td>عدد أوجه المراجعة</td>
+                        <td>{{ list.count_link }}</td>
+                        <td>حاضر {{ list.present }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>عدد الأوجه</td>
+                        <td> الأخطاء واللحون</td>
+                        <td>التنبيهات</td>
+                        <td style="width: 20px;">حفظ</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ list.count_save }}</td>
+                        <td>{{ list.count_erorr }}</td>
+                        <td>{{ list.count_alirt }}</td>
+                        <td style="width: 20px;"><img onclick="save_item(this)" style="color: #007bff;cursor: pointer;"
+                                                      class="icons  check"
+                                                      src="{% static 'style/icon/check-circle-solid.svg' %}"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="progress"><div class="progress-bar" style="width: {{ list.instance.total |floatformat:0 }}%;"></div></div>
-        <div class="card-max">
-            <table onchange="auto_total(this)" class="card-table">
-                <tr>
-                    <td></td>
-                    <td>من</td>
-                    <td>إلى</td>
-                </tr>
 
-                <tr>
-                    <td>الحفظ</td>
-                    <td>{{ list.save_from }}</td>
-                    <td>{{ list.save_to }}</td>
-                </tr>
-
-                <tr>
-                    <td>المراجعة</td>
-                    <td>{{ list.link_from }}</td>
-                    <td>{{ list.link_to }}</td>
-                </tr>
-                <tr>
-                    <td>عدد أوجه المراجعة</td>
-                    <td>{{ list.count_link }}</td>
-                    <td>حاضر {{ list.present }}</td>
-                </tr>
-
-                <tr>
-                    <td>عدد الأوجه</td>
-                    <td> الأخطاء واللحون</td>
-                    <td>التنبيهات</td>
-                    <td style="width: 20px;">حفظ</td>
-                </tr>
-
-                <tr>
-                    <td>{{ list.count_save }}</td>
-                    <td>{{ list.count_erorr }}</td>
-                    <td>{{ list.count_alirt }}</td>
-                     <td style="width: 20px;"><img onclick="save_item(this)"  style="color: #007bff;cursor: pointer;" class="icons  check" src="{% static 'style/icon/check-circle-solid.svg' %}"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-</form >
+    </form>
 
     {% endfor %}
 
@@ -186,6 +195,7 @@ width: 40px;
  display: none;
 }*/
 
+
 </style>
 
 <script type="text/javascript">
@@ -217,49 +227,6 @@ width: 40px;
 
      }
 
-     function degree(elements){
-         var    degree = 0;
-         if (elements['number_pages'].value > 0){
-            degree = (1 - (elements['count_erorr'].value  * 5 + elements['count_alirt'].value  * 2) / (   elements['number_pages'].value   * 10)) * 100;
-            if (degree < 0){
-                return 0;
-            }
-            if (degree > 100){
-                return  100;
-            }
-        }
-         return degree;
-     }
-
-    function total(elements){
-
-
-       if(elements['present'].value==''){
-         return 0;
-       }
-        var    Degree=degree(elements);
-
-
-
-
-       var save = ratio(elements['Sup_save'], elements['Im_save']);
-       var link = ratio(elements['Sup_link'], elements['Im_link']);
-       var review = ratio(elements['Sup_review'], elements['Im_review']);
-
-        //var present=Present[elements['present'].value];
-
-        var Total = save + link + review + (
-                Degree / 100);
-
-        if (Total < 0){
-            return 0;
-        }
-        else if (Total > 100){
-            return 100;
-        }
-        return  Total;
-    }
-
 
     function select_form(self){
          while( self.nodeName!="FORM"){
@@ -272,11 +239,11 @@ width: 40px;
         self=select_form(self)
     var elements = self.elements;
         var el =self.querySelector('div[name="degree"]')
-        var value=degree(elements);
-        el.innerHTML= value.toFixed(2)+'%';
+        var value=elements['count_save'].value ;
+        el.innerHTML= value;
         el =self.querySelector('div[name="total"]')
-        value=total(elements);
-        el.innerHTML= value.toFixed(2)+'%';
+        value=elements['count_link'].value;
+        el.innerHTML= value;
 
         }
 
@@ -286,19 +253,51 @@ function save_item(self){
      if (!form.reportValidity() ) {
         return false;
       }
-        form.submit();
-   // alert("تم حفظ البيانات الطالب : ");
+        var FD = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       if (this.responseText=="Done"){
+call_show_list(self);
+          var done=form.querySelector('.done');
+      done.style.display="inline";
+        }else{
+        alert(this.responseText);
+        alert("لم يتم حفظ بيانات الطالب تواصل مع المسؤول عن الموقع");
+        }
+	  }
+  };
+  xhttp.open("POST", "./", true);
+  xhttp.setRequestHeader("X-CSRFToken", getCookie("csrftoken") );
+xhttp.send(FD);
 }
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 function  call_show_list(self){
- var check=self.parentElement.querySelector('.down');
+ var check=select_form(self).querySelector('.down');
  show_list(check);
 }
 
 function show_list(self){
      var card_table=self.parentElement.parentElement.querySelector('.card-table');
      ;
-    var angle_down=self.parentElement.parentElement.querySelector('.icons');
+    var angle_down=self.parentElement.parentElement.querySelector('.down');
      ;
  // var check=self.parentElement.parentElement.querySelector('.check');
      ;
@@ -386,6 +385,7 @@ var testDivs = Array.prototype.filter.call(testElements, function(testElement){
 
 
 }
+
 
 
 </script>
