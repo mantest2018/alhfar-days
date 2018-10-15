@@ -7,6 +7,7 @@
   <thead>
     <tr>
         <th rowspan="2" >اليوم</th>
+        <th rowspan="2" >التاريخ</th>
         <th rowspan="2">عدد الطلاب</th>
         <th rowspan="2">الحضور</th>
         <th rowspan="2">الغياب</th>
@@ -22,7 +23,8 @@
   <tbody>
       {% for list in latest_list %}
       <tr>
-       <td class="col2"> <a href="/students/{{ list.id }}/">{{ list.name }}</a></td>
+       <td class="col2"> {{ list.name }}</td>
+          <td class="col2"> <a href="/students/{{ list.id }}/">{{ list.date_hijri }}</a></td>
            <td class="col2"> {{ list.conut_student  }}</td>
           <td class="col2"> {{ list.conut_presence_student  }}</td>
           <td class="col2"> {{ list.conut_truant_student }}</td>

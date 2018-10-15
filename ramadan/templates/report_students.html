@@ -82,11 +82,26 @@ function goBack() {
             غائب
             {% endif %}
         </td>
-        <td class="col2"> {{ list.save_from }}</td>
-        <td class="col2"> {{ list.save_to }}</td>
+        <td class="col2"> {% if list.save_from %}
+            {{ list.save_from }}
+            {% else %}
+            ----
+            {% endif %}</td>
+        <td class="col2"> {% if list.save_to %} {{ list.save_to }}
+        {% else %}
+            ----
+            {% endif %}
+        </td>
 
-        <td class="col2"> {{ list.link_from }}</td>
-        <td class="col2"> {{ list.link_to }}</td>
+        <td class="col2"> {% if list.link_from %} {{ list.link_from }}
+              {% else %}
+            ----
+            {% endif %}
+        </td>
+        <td class="col2"> {% if list.link_to %} {{ list.link_to }}      {% else %}
+            ----
+            {% endif %}
+        </td>
 
         <td class="col2"> {{ list.count_save }}</td>
         <td class="col2"> {{ list.count_erorr }}</td>

@@ -28,8 +28,6 @@ class Students(models.Model):
             for item in Days.objects.filter(id__gt=day_now()):
                 try:
                     report = Tasks_days.objects.get(student=self, days=item)
-                    if report.total==0 or report.total==None:
-                        report.delete()
                 except:
                     continue
         else:

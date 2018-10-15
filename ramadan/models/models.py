@@ -36,6 +36,11 @@ class Days(models.Model):
     def __str__(self):
         return str(self.name)
 
+    def date_hijri(self):
+        from library.umalqurra.hijri_date import HijriDate
+        um = HijriDate(self.start_time)
+        return  um.date_hijri()
+
     def set_course(self,course):
         self.course=course
 
