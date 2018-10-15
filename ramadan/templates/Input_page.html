@@ -6,9 +6,9 @@
         <th scope="col">الطالب:</th>
         <th scope="col">{{ report.student }}</th>
 
-        {% if  report.weeks %}
-        <th scope="col">الأسبوع:</th>
-        <th scope="col">{{ report.weeks }}</th>
+        {% if  report.days %}
+        <th scope="col">اليوم:</th>
+        <th scope="col">{{ report.days }}</th>
          {% endif %}
         {% if  report.student.is_show %}
          {% else %}

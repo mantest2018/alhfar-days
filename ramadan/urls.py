@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from ramadan import views
+from . import views
 
 
 urlpatterns = [
@@ -17,9 +17,9 @@ urlpatterns = [
     #   path('register/',  views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    #          techer  tasks_weeks
-    path('tasks_weeks/<int:week_id>/student/<int:student_id>/', views.tasks_weeks, name='student_tasks'),
-    # path('tasks_weeks/<int:student_id>/<int:week_id>', views.tasks_weeks, name='student_tasks'),
+    #          techer  tasks_days
+    path('tasks_days/<int:week_id>/student/<int:student_id>/', views.tasks_days, name='student_tasks'),
+    # path('tasks_days/<int:student_id>/<int:week_id>', views.tasks_days, name='student_tasks'),
 
 
     path('students/', views.students, name='students_course'),

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Courses, Tasks_weeks
+from .models import Courses, Tasks_days
 
 
 class CoursesForm(forms.ModelForm):
@@ -9,7 +9,7 @@ class CoursesForm(forms.ModelForm):
         fields = ['name_course', 'phone_nemper']
 
 
-class Tasks_weeks_Form(forms.ModelForm):
+class Tasks_days_Form(forms.ModelForm):
     present = forms.BooleanField(label='الحضور',required=False)
     save_from =forms.CharField(label='الحفظ من', required=False)
     save_to = forms.CharField(label='الحفظ إلى', required=False)
@@ -22,7 +22,7 @@ class Tasks_weeks_Form(forms.ModelForm):
 
 
     class Meta:
-        model = Tasks_weeks
+        model = Tasks_days
         fields = [ 'present', 'save_from', 'save_to', 'link_from', 'link_to',
                   'count_save', 'count_erorr', 'count_alirt', 'count_link']
 
@@ -30,5 +30,5 @@ class Students_Form(forms.ModelForm):
     name_student =forms.CharField(label='اسم الطالب', required=False)
 
     class Meta:
-        model = Tasks_weeks
+        model = Tasks_days
         fields = [ 'name_student']

@@ -4,9 +4,9 @@ from django.utils import timezone
 from django.db.models import Q
 
 
-def week_now():
+def day_now():
     t = timezone.make_aware(datetime.datetime.now(), timezone.get_default_timezone())
-    return Weeks.objects.filter(Q(start_time__lte=t) | Q(id=1)).latest('id').id
+    return Days.objects.filter(Q(start_time__lte=t) | Q(id=1)).latest('id').id
 
 
 class Students(models.Model):
@@ -25,29 +25,29 @@ class Students(models.Model):
     def save(self, *args, **kwargs):
         super(Students, self).save(*args, **kwargs)
         if not self.is_show:
-            for item in Weeks.objects.filter(id__gt=week_now()):
+            for item in Days.objects.filter(id__gt=day_now()):
                 try:
-                    report = Tasks_weeks.objects.get(student=self, weeks=item)
+                    report = Tasks_days.objects.get(student=self, days=item)
                     if report.total==0 or report.total==None:
                         report.delete()
                 except:
                     continue
         else:
-            for item in Weeks.objects.filter(id__gte=week_now()):
+            for item in Days.objects.filter(id__gte=day_now()):
                 try:
-                    Tasks_weeks.objects.get(student=self, weeks=item)
+                    Tasks_days.objects.get(student=self, days=item)
                 except:
-                    report = Tasks_weeks(student=self, weeks=item)
+                    report = Tasks_days(student=self, days=item)
                     report.save()
-        report = Tasks_weeks.objects.filter(student=self)
+        report = Tasks_days.objects.filter(student=self)
         for repo in report:
             repo.save()
 
 
 # Sup المفترض Im التنفيذ
-class Tasks_weeks(models.Model):
+class Tasks_days(models.Model):
     student = models.ForeignKey(Students, on_delete=models.CASCADE)
-    weeks = models.ForeignKey(Weeks, on_delete=models.CASCADE)
+    days = models.ForeignKey(Days, on_delete=models.CASCADE)
 
     present = models.BooleanField(default=True)
 

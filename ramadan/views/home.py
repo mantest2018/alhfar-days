@@ -14,8 +14,8 @@ def home_page(request):
 
 
 def report(request):
-    last_week = Weeks.objects.filter(id__lt=week_now()).latest('id')
-    tasks = Tasks_weeks.objects.filter(weeks__id=last_week.id)
+    last_week = Days.objects.filter(id__lt=day_now()).latest('id')
+    tasks = Tasks_days.objects.filter(days__id=last_week.id)
     context = dict(
         save_pages = tasks.aggregate(sum=Sum('count_save'))['sum'],
         link_pages = tasks.aggregate(sum=Sum('count_link'))['sum'],
@@ -30,8 +30,8 @@ def report(request):
 
 
 def weekNow(request):
-    last_week = Weeks.objects.filter(id__lte=week_now()).latest('id')
-    tasks = Tasks_weeks.objects.filter(weeks__id=last_week.id)
+    last_week = Days.objects.filter(id__lte=day_now()).latest('id')
+    tasks = Tasks_days.objects.filter(days__id=last_week.id)
     context = dict(
         save_pages=tasks.aggregate(sum=Sum('count_save'))['sum'],
         link_pages=tasks.aggregate(sum=Sum('count_link'))['sum'],
@@ -50,13 +50,13 @@ def report_view(request,weekR=''):
          return HttpResponseRedirect('/')
     global is_update
     if weekR=='':
-        is_up=(is_update == week_now())
-        weekR = week_past()
+        is_up=(is_update == day_now())
+        weekR = day_past()
         path = 'cache/' + 'index.html'
     else:
         is_up=False
         path = 'cache/index' + str(weekR) + '.html'
-        weekR = Weeks.objects.get( id=weekR)
+        weekR = Days.objects.get( id=weekR)
     import os
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -67,7 +67,7 @@ def report_view(request,weekR=''):
         except IOError:
             content = 'أنتظر قليلاً ثم حدث الصفحة'
     else:
-        # is_update = week_now()
+        # is_update = day_now()
 
         try:
 
@@ -75,12 +75,12 @@ def report_view(request,weekR=''):
 
             course = Courses.objects.filter(is_show=True)
             for item in course:
-                week = Weeks.objects.get(id=weekR.id)
+                week = Days.objects.get(id=weekR.id)
                 week.set_course(item)
                 latest_list.append(week)
 
-        except Weeks.DoesNotExist:
-            raise Http404("Weeks does not exist")
+        except Days.DoesNotExist:
+            raise Http404("Days does not exist")
 
 
         context = dict(

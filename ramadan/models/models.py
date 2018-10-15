@@ -23,8 +23,11 @@ class Courses(models.Model):
     def __str__(self):
         return self.name_course
 
+class Week(models.Model):
+    name = models.CharField(max_length=50)
 
-class Weeks(models.Model):
+class Days(models.Model):
+    week = models.ForeignKey(Week, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField(default=datetime.datetime.now(),null=True, blank=True)
     end_time = models.DateTimeField(default=datetime.datetime.now(), null=True, blank=True)
@@ -42,8 +45,8 @@ class Weeks(models.Model):
     def conut_student(self):
         if(self.course==None):
             return 'erorr'
-        from .students import Tasks_weeks
-        return str(Tasks_weeks.objects.filter(weeks=self,student__course__id=self.course.id).aggregate(count=Count('id'))['count'])
+        from .students import Tasks_days
+        return str(Tasks_days.objects.filter(days=self,student__course__id=self.course.id).aggregate(count=Count('id'))['count'])
 
     def conut_presence_student(self):
         try:
@@ -54,19 +57,19 @@ class Weeks(models.Model):
     def conut_truant_student(self):
         if (self.course == None):
             return 'erorr'
-        from .students import Tasks_weeks
+        from .students import Tasks_days
         from django.db.models import Q
         return str(
-            Tasks_weeks.objects.filter(weeks=self, student__course__id=self.course.id).filter(Q(present=False)|Q(present=None)).aggregate(count=Count('id'))['count'])
+            Tasks_days.objects.filter(days=self, student__course__id=self.course.id).filter(Q(present=False)|Q(present=None)).aggregate(count=Count('id'))['count'])
 
 
 
     def sum_count_save(self):
         if (self.course == None):
             return 'erorr'
-        from .students import Tasks_weeks
+        from .students import Tasks_days
         return str(
-            Tasks_weeks.objects.filter(weeks=self, student__course__id=self.course.id).aggregate(sum=Sum('count_save'))[
+            Tasks_days.objects.filter(days=self, student__course__id=self.course.id).aggregate(sum=Sum('count_save'))[
                 'sum'])
 
 
@@ -74,9 +77,9 @@ class Weeks(models.Model):
     def sum_count_link(self):
         if (self.course == None):
             return 'erorr'
-        from .students import Tasks_weeks
+        from .students import Tasks_days
         return str(
-            Tasks_weeks.objects.filter(weeks=self, student__course__id=self.course.id).aggregate(sum=Sum('count_link'))[
+            Tasks_days.objects.filter(days=self, student__course__id=self.course.id).aggregate(sum=Sum('count_link'))[
                 'sum'])
 
 
@@ -84,15 +87,15 @@ class Weeks(models.Model):
     def sum_count_erorr(self):
         if (self.course == None):
             return 'erorr'
-        from .students import Tasks_weeks
+        from .students import Tasks_days
         return str(
-            Tasks_weeks.objects.filter(weeks=self, student__course__id=self.course.id).aggregate(sum=Sum('count_erorr'))[
+            Tasks_days.objects.filter(days=self, student__course__id=self.course.id).aggregate(sum=Sum('count_erorr'))[
                 'sum'])
 
     def sum_count_alirt(self):
         if (self.course == None):
             return 'erorr'
-        from .students import Tasks_weeks
+        from .students import Tasks_days
         return str(
-            Tasks_weeks.objects.filter(weeks=self, student__course__id=self.course.id).aggregate(sum=Sum('count_alirt'))[
+            Tasks_days.objects.filter(days=self, student__course__id=self.course.id).aggregate(sum=Sum('count_alirt'))[
                 'sum'])

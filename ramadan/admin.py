@@ -1,16 +1,16 @@
 from django.contrib import admin
-from ramadan.models import Courses, Students, Weeks, Tasks_weeks
+from ramadan.models import Courses, Students, Days, Tasks_days
 
 # Register your models here.
-class Weeks_Admin(admin.ModelAdmin):
+class Days_Admin(admin.ModelAdmin):
     list_display = ['__str__','start_time','end_time']
     class Meta:
-        model=Weeks
+        model=Days
 
-class Tasks_weeks_Admin(admin.ModelAdmin):
+class Tasks_days_Admin(admin.ModelAdmin):
     list_display = ['student']
     class Meta:
-        model=Tasks_weeks
+        model=Tasks_days
 
 
 class Courses_Admin(admin.ModelAdmin):
@@ -23,7 +23,7 @@ class Courses_Admin(admin.ModelAdmin):
 
 admin.site.register(Courses,Courses_Admin)
 admin.site.register(Students)
-admin.site.register(Weeks,Weeks_Admin)
-admin.site.register(Tasks_weeks,Tasks_weeks_Admin)
+admin.site.register(Days,Days_Admin)
+admin.site.register(Tasks_days,Tasks_days_Admin)
 
 
