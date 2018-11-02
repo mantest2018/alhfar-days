@@ -22,7 +22,7 @@ class Students(models.Model):
         return self.name_student
 
     # تحديث درجات الطالب عند تغيير مساره
-    def save(self, *args, **kwargs):
+    def save(self,new='', *args, **kwargs):
         super(Students, self).save(*args, **kwargs)
         if not self.is_show:
             for item in Days.objects.filter(id__gt=day_now()):
@@ -31,7 +31,11 @@ class Students(models.Model):
                 except:
                     continue
         else:
-            for item in Days.objects.filter(id__gte=day_now()):
+            if new =='':
+                daysfilter=Days.objects.filter(id__gte=day_now())
+            else:
+                daysfilter = Days.objects.filter(id__gte=new)
+            for item in daysfilter:
                 try:
                     Tasks_days.objects.get(student=self, days=item)
                 except:

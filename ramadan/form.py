@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Courses, Tasks_days
+from .models import Courses, Tasks_days,Students,Days
 
 
 class CoursesForm(forms.ModelForm):
@@ -28,7 +28,8 @@ class Tasks_days_Form(forms.ModelForm):
 
 class Students_Form(forms.ModelForm):
     name_student =forms.CharField(label='اسم الطالب', required=False)
+    day = forms.ModelChoiceField(label='تاريخ تسجيل الطالب', queryset=Days.objects.all())
 
     class Meta:
-        model = Tasks_days
-        fields = [ 'name_student']
+        model = Students
+        fields = [ 'name_student','day']

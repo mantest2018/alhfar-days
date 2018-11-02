@@ -128,9 +128,11 @@ def register(request):
         if request.session['user_type'] == 'techer':
             is_save = ''
             if "POST" == request.method:
-                student = Students(course_id=request.session['member_id'])
+                student = Students(course_id=request.session['member_id'],)
                 fotmedit = Students_Form(request.POST or None, instance=student)
-                fotmedit.save()
+                student.name_student=fotmedit['name_student'].value()
+                student.save(new=fotmedit['day'].value())
+                # student.save()
                 is_save = 'تم حفظ البيانات'
             else:
                 fotmedit = Students_Form(request.POST or None)

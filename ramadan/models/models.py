@@ -34,7 +34,7 @@ class Days(models.Model):
     course=None
 
     def __str__(self):
-        return str(self.name)
+        return str(self.date_hijri())
 
     def date_hijri(self):
         from library.umalqurra.hijri_date import HijriDate
